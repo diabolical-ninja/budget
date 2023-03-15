@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "budget"
+version = "0.1.0"
+description = "Basic spending analysis & budgeting"
+authors = ["Yass Eltahir <15998949+diabolical-ninja@users.noreply.github.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+plotly = "^5.13.1"
+
+[tool.poetry.dev-dependencies]
+pandas = "^1.5.3"
+mypy = "^1.1.1"
+black = "^23.1.0"
+flake8 = "^6.0.0"
+ipykernel = "^6.21.3"
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
