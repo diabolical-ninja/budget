@@ -6,18 +6,33 @@ Objectives:
         - red/back depending whether over or under
 """
 
+
 # %%
+import argparse
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from dateutil.relativedelta import relativedelta
-from plotly.subplots import make_subplots
+
+# %%
+# Create the parser
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--data",
+    "-d",
+    type=str,
+    required=True,
+    help="Path to the datafile containing historical financial records",
+)
+args = parser.parse_args()
+
 
 MAX_HISTORY = 36  # Months, aka 3yrs
 COMPARISON_MONTHS = 6  # Compare to the last 6months of expenditure
 
 # %%
-transactions_df = pd.read_csv("data/report_2023-03-10_230157.csv", sep=";")
+transactions_df = pd.read_csv(args.data, sep=";")
 
 # %%
 # Select data range desired:
