@@ -18,12 +18,7 @@ To run, you'll need your transaction history with the expectation the following 
 | amount   | float              | Transaction amount assuming positive values correspond to income & negative for expenses |
 
 
-Update the following with the path to your data:
-```python
-transactions_df = pd.read_csv("data/report_2023-03-10_230157.csv", sep=";")
-```
-
 To run:
 ```bash
-poetry run python analysis.py  
+poetry run python analysis.py --data "path/to/data.csv"
 ```
