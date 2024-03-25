@@ -6,9 +6,10 @@ Objectives:
         - red/back depending whether over or under
 """
 
-
 # %%
 import argparse
+import os
+from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
@@ -22,17 +23,23 @@ parser.add_argument(
     "--data",
     "-d",
     type=str,
-    required=True,
+    required=False,
     help="Path to the datafile containing historical financial records",
 )
 args = parser.parse_args()
 
 
+# If no path to data provided, use the most recent file
+if args.data:
+    data_path = args.data
+else:
+    data_path = sorted(Path("data/").iterdir(), key=os.path.getmtime, reverse=True)[0]
+
 MAX_HISTORY = 36  # Months, aka 3yrs
 COMPARISON_MONTHS = 6  # Compare to the last 6months of expenditure
 
 # %%
-transactions_df = pd.read_csv(args.data, sep=";")
+transactions_df = pd.read_csv(data_path, sep=";")
 
 # %%
 # Select data range desired:
