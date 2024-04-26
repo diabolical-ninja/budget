@@ -34,6 +34,7 @@ if args.data:
     data_path = args.data
 else:
     data_path = sorted(Path("data/").iterdir(), key=os.path.getmtime, reverse=True)[0]
+    print(f"No data provided. Defaulting to the most recent: {data_path}")
 
 MAX_HISTORY = 36  # Months, aka 3yrs
 COMPARISON_MONTHS = 6  # Compare to the last 6months of expenditure
@@ -119,7 +120,9 @@ surplus_fig = px.scatter(
     x="date",
     y="surplus",
     color="surplus",
-    color_continuous_scale="temps_r",
+    # color_continuous_scale="temps_r",
+    color_continuous_scale="RdYlGn",
+    color_continuous_midpoint=0,
     trendline="rolling",
     trendline_options={"window": 6},  # 6month rolling average
     trendline_color_override="black",
